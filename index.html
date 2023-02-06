@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamond Race</title>
+  <style>
+
+  .header{
+    text-align: center;
+ }
+
+  .h1,.h2 {
+  color: #000;
+  
+}
+/* line 1 and line2*/
+.line1, .line2 {
+  width: 5px;
+  height: 550px;
+  background-color: black;
+  float: left;
+  margin-left: 21px;
+}
+
+.line2 {
+  position: relative;
+}
+/* End  */
+.race-end{
+  position: absolute;
+  top: 0;
+  margin-left: 750px;
+  margin-top: 35px;
+}
+/* reset button*/
+.btn {
+  float: left;
+  margin-top: 50px;
+  margin-left: 100px;
+  border-radius: 12px;
+  padding: 3px;
+  font-size: 18px;
+  font-weight: bold
+}
+/* score board*/
+.score-board{
+  padding-top: 70px;
+  margin-top: 70px;
+  margin-left: 100px;
+}
+/* score*/
+.rectangle{
+  width: 100px;
+  height: 20px;
+  border-radius: 12px;
+  margin-bottom: 5px;
+  border: none;
+}
+/* score and diamonds*/
+.blue {
+  background-color: blue;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+/* score style*/
+.no-of-clicks{
+  color: black;
+  margin-left: 125px;
+}
+
+ .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  height: 250px;
+}  
+   /* Creates Diamond shape*/
+  .diamond {
+  width: 50px;
+  height: 50px;
+  transform: rotate(45deg);
+  margin-bottom: 15px;
+  flex-direction: column;
+  margin-top: 100px;
+  transform: translateY(-50%);
+}   
+  /* sets default styles for HTML elements in a webpage */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+</style>
+  <title> Race</title>
+  
+</head>
+<body>
+<!-- creates a header <div> element with a class of "header" and an <h1> element inside with the text "Diamond Race". -->
+<div class= "header"><h1>Diamond Race</h1></div>
+<!-- creates a <div> element with a class of "race-wrap". -->
+<div class="race-wrap">
+ <!-- creates a <div> element with a class of "container". -->
+   <div  class="container">
+      <!-- creates an empty <div> element. -->
+	  <div>
+         <!-- creates an heading (<h2> element) with the text "Start". -->
+         <h2>Start</h2>
+         <!-- creates a line (<div> element) with a class of "line1". -->
+         <div class="line1"></div>
+         <!-- from line 121 to 140 creates a <div> element with a class of "diamond" and "diamond no1","diamond no2",diamond no3, and "diamond no4",and"diamond blue","diamond green", "diamond red", and "diamond yellow", respectively..where it creats diamonds -->
+           <div class="diamond">
+               <div class="diamond no1">
+                 <div class="diamond blue"></div>
+               </div>
+            </div> 
+            <div class="diamond">
+                <div class="diamond no2">
+                    <div class="diamond green"></div>
+                </div>
+            </div>
+            <div class="diamond">
+                <div class="diamond no3">
+                        iv class="diamond red"></div>
+                </div>
+            </div>
+            <div class="diamond">
+                <div class="diamond no4">
+                        v class="diamond yellow"></div>
+                </div>
+            </div>
+            <!-- creates a <div> element with a class of "race-end". -->
+            <div class="race-end">
+              <!-- creates an heading (<h2> element)  with the text "End". -->
+              <h2>End</h2>
+              <!-- creates a line (<div> element) with a class of "line2". -->
+              <div class="line2"></div>
+              <!-- creates a button (<button> element) with the text "Reset" and a class of "btn". -->
+              <button class="btn">Reset</button>
+              <!-- creates a score board (<div> element) with a class of "score-board". -->
+              <div class="score-board">
+                    <!-- creates an heading (<h3> element ) with the text "Score Board". -->
+                    <h3>Score Board</h3>
+                    <!-- from line 154 to 167 creates a rectangle shape with cuvred corners (<div> element) with a class of "rectangle" and with colors like blue,green,red and yellow.And number of clicks  or score with (<div> element) with class name no-of-clicks.the score is set to zero -->
+                    <div class="rectangle">
+                        <div class="rectangle blue">
+                            <div class="no-of-clicks">0</div>
+                        </div>
+                        <div class="rectangle green">
+                            <div class="no-of-clicks">0</div>
+                        </div>   
+                        <div class="rectangle red">
+                            <div class="no-of-clicks">0</div>
+                        </div>
+                        <div class="rectangle yellow">
+                            <div class="no-of-clicks">0</div>
+                        </div>
+                    </div>
+                </div>
+	        </div>
+        </div>
+    </div> 
+</div>
+<script>
+ //  line waits for the DOM (Document Object Model) to be fully loaded before executing the code inside the function.
+document.addEventListener("DOMContentLoaded", function() {
+    // line 177 to 182 selects all elements with the class "diamond",vlue.green,red,,yellow and btn and assigns them to the constant variable diamonds,blue,green,red,yollow and btn respectively.
+    const diamonds = document.querySelectorAll(".diamond");
+    const blue = document.querySelector(".blue");
+    const green = document.querySelector(".green");
+    const red = document.querySelector(".red");
+    const yellow = document.querySelector(".yellow");
+    const reset = document.querySelector(".btn");
+    // from line 184 to187 declares a variable named blueScore,greenscore,redScore and YellowScore and initializes it with the value 0. 
+    let blueScore = 0;
+    let greenScore = 0;
+    let redScore = 0;
+    let yellowScore = 0;
+    // Adds a click event listener to the current diamond element in the iteration. When the diamond is clicked, the callback function inside addEventListener will be executed.
+    diamonds.forEach(function(diamond) {
+    let left = 0;
+        diamond.addEventListener("click", function() {
+        // increments the value of left by 25.
+        left += 25;
+        // sets the margin-left CSS property of the diamond element to the value of left plus "px".
+        diamond.style.marginLeft = left + "px";
+        });
+    });
+    // declares a function named updateScore that takes in two arguments, color and score.
+    function updateScore(color, score) {
+      // declares a variable named className that is the concatenation of the value of color and " .no-of-clicks" or score.
+      var className = color + ' .no-of-clicks';
+      // Selects an element from the document that has a class name equal to the value of className and assigns it to the element variable.
+      var element = document.querySelector('.' + className);
+      // sets the textContent property of the element to the value of score.
+      element.textContent = score;
+      // if the value of score is greater than or equal to 10, the code inside the curly braces will be executed and set the color of the score into red.
+      if (score >= 10) {
+         element.style.color = "red";
+        }
+    }
+    // from line 213 to 260 sets up an event listener for each of four elements (blue, green, red, yellow) and When  these elements is clicked, the corresponding score increases by 1 and is updated by calling the updateScore function. If the any of score reaches 10, then all the event listeners for the other elements are removed. 
+    // if the value of blueScore is greater than or equal to 10, the function will return and the remaining code inside the function will not be executed and increments the value of blueScore by 1..
+    blue.addEventListener("click", function() {
+      if (blueScore >= 10) return;
+      blueScore += 1;
+      // calls the updateScore function and passes in the string value "blue" and the value of blueScore as arguments.
+      updateScore("blue", blueScore);
+      if (blueScore === 10) {
+            blue.removeEventListener("click", arguments.callee);
+            green.removeEventListener("click", greenClickHandler);
+            red.removeEventListener("click", redClickHandler);
+            yellow.removeEventListener("click", yellowClickHandler);
+        }
+    });
+
+    green.addEventListener("click", greenClickHandler = function() {
+      if (greenScore >= 10) return;
+      greenScore += 1;
+      updateScore("green", greenScore);
+      if (greenScore === 10) {
+            green.removeEventListener("click", arguments.callee);
+            blue.removeEventListener("click", blueClickHandler);
+            red.removeEventListener("click", redClickHandler);
+            yellow.removeEventListener("click", yellowClickHandler);
+        }
+    });
+
+    red.addEventListener("click", redClickHandler = function() {
+      if (redScore >= 10) return;
+      redScore += 1;
+      updateScore("red", redScore);
+      if (redScore === 10) {
+            red.removeEventListener("click", arguments.callee);
+            blue.removeEventListener("click", blueClickHandler);
+            green.removeEventListener("click", greenClickHandler);
+            yellow.removeEventListener("click", yellowClickHandler);
+        }
+    });
+
+    yellow.addEventListener("click", yellowClickHandler = function() {
+      if (yellowScore >= 10) return;
+      yellowScore += 1;
+      updateScore("yellow", yellowScore);
+      if (yellowScore === 10) {
+            red.removeEventListener("click", arguments.callee);
+            blue.removeEventListener("click", blueClickHandler);
+            green.removeEventListener("click", greenClickHandler);
+            yellow.removeEventListener("click", yellowClickHandler);
+        }
+    });
+    // an event listener for a reset button that sets all scores back to 0 and updates the score display.
+    reset.addEventListener("click", function() {
+      blueScore = 0;
+      greenScore = 0;
+      redScore = 0;
+      yellowScore = 0;
+      updateScore("blue", blueScore);
+      updateScore("green", greenScore);
+      updateScore("red", redScore);
+      updateScore("yellow", yellowScore);
+    });
+});
+</script>
+</body>
+</html>
